@@ -1,3 +1,10 @@
+<!--
+ * @Description:  
+ * @Author: 司马老贼
+ * @Date: 2022-12-01 13:03:53
+ * @LastEditTime: 2022-12-01 13:15:47
+ * @LastEditors: 司马老贼
+-->
 # Nuxt 3 Minimal Starter
 
 Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
@@ -7,11 +14,7 @@ Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introdu
 Make sure to install the dependencies:
 
 ```bash
-# yarn
-yarn install
 
-# npm
-npm install
 
 # pnpm
 pnpm install --shamefully-hoist
@@ -22,7 +25,7 @@ pnpm install --shamefully-hoist
 Start the development server on http://localhost:3000
 
 ```bash
-npm run dev
+pnpm dev
 ```
 
 ## Production
@@ -30,13 +33,13 @@ npm run dev
 Build the application for production:
 
 ```bash
-npm run build
+pnpm build
 ```
 
 Locally preview production build:
 
 ```bash
-npm run preview
+pnpm preview
 ```
 
 Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
