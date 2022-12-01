@@ -1,0 +1,23 @@
+.page{
+
+    padding: 60px 15px  80px 15px;
+    
+}
+ 
+
+.flex-container{
+    display: -webkit-flex;
+    display: flex;
+}
+.align-items-center{
+    -webkit-align-items: center ;
+    align-items:center ;
+}
+.justify-content-space-between{
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
+}
+.justify-content-center{
+    -webkit-justify-content: center ;
+    justify-content: center ;
+}
