@@ -2,7 +2,7 @@
  * @Description:
  * @Author: 司马老贼
  * @Date: 2022-11-23 18:08:31
- * @LastEditTime: 2022-12-01 10:20:00
+ * @LastEditTime: 2022-12-02 12:28:38
  * @LastEditors: 司马老贼
  */
 import { defineNuxtPlugin } from "#app";
@@ -18,7 +18,8 @@ import { Button ,
          PullRefresh,
          List,
          Tag,
-         Card 
+         Card,
+         Lazyload
         } from "vant";
 
 // 目前在 nuxt 中无法按需引入样式，因此采用手动引入的方式
@@ -40,5 +41,8 @@ export default defineNuxtPlugin((nuxtApp) => {
     .use(PullRefresh)
     .use(List)
     .use(Tag)
-    .use(Card);
+    .use(Card)
+    .use(Lazyload, {
+      lazyComponent: true,
+    });
 });

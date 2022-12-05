@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: 司马老贼
  * @Date: 2022-09-07 16:42:00
- * @LastEditTime: 2022-11-30 19:16:57
+ * @LastEditTime: 2022-12-01 16:11:02
  * @LastEditors: 司马老贼
 -->
 
@@ -34,9 +34,7 @@
 
 <script setup lang="ts">
 import type { Good } from '@/components/good/type'
-// defineOptions({
-//   name: "Good",
-// });
+
 
 
 interface Props {

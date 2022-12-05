@@ -2,7 +2,7 @@
  * @Description:
  * @Author: 司马老贼
  * @Date: 2022-11-28 10:11:33
- * @LastEditTime: 2022-11-30 18:51:25
+ * @LastEditTime: 2022-12-02 11:27:26
  * @LastEditors: 司马老贼
  */
 
@@ -15,17 +15,21 @@ type Res = Ref<Data>
 
 //reqest interceptors
 const onRequestHandler = (options: Data, userOption: Config) => {
+  
   const token = undefined;
   if (token) {
     options.headers = {};
     options.headers.token = token;
   }
-  options.baseURL = process.env.NUXT_PUBLIC_API_BASE_URL;
-
+ 
+  options.baseURL = 'http://backend-api-01.newbee.ltd/api/v1';
+ 
+ 
   options = {
     ...options,
     ...userOption,
   };
+ 
 };
 //err interceptors
 const onErrorHandler = (err: Error) => {
@@ -37,9 +41,10 @@ const onErrorHandler = (err: Error) => {
 //response interceptors
 
 const onResponseHandler = (res:  Res) =>  {
-
+ 
   const data = ref<Data>({})
   if (res.value.resultCode !== 200) {
+    
     Toast(res.value.message);
     return Promise.reject(new Error(res.value.message || "Error"));
    
@@ -53,9 +58,9 @@ const onResponseHandler = (res:  Res) =>  {
 
 const request = async (url: string, userOption: Config) => {
   const { data, pending, error, refresh } = await useFetch(url, {
-    onRequest({ options }) {
+    onRequest({request, options }) {
       // Set the request headers
-
+      
       onRequestHandler(options, userOption);
     },
     onRequestError({ request, options, error }) {

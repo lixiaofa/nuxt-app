@@ -2,34 +2,43 @@
  * @Description: 
  * @Author: 司马老贼
  * @Date: 2022-08-17 11:54:25
- * @LastEditTime: 2022-12-01 10:59:39
+ * @LastEditTime: 2022-12-05 09:49:19
  * @LastEditors: 司马老贼
 -->
 <template>
   <div class="page">
-    <TheHeader>
+    <!-- <TheHeader>
       <template #right>
         <router-link to="/user">
           <van-icon name="user-o" />
         </router-link>  
       </template>
-    </TheHeader> 
+    </TheHeader>  -->
 
-    <GoodList :goodList="goodList" >
+    <!-- <GoodList  >
       <template v-slot="{good}">
-       
-         
-       
-          <good direction="vertical"   :good="good" >
+        <lazy-component>
+          <good direction="vertical"   :good="good"  v-lazy="good">
               <template  #tags>
                 <van-tag plain type="primary" v-if="good.goodsId % 2">{{good.tag}}</van-tag>
               </template>
 
             </good>
-       
-           
+ 
+        </lazy-component>
       </template>  
-    </GoodList> 
+    </GoodList>  -->
+    <ul>
+      <li v-for="item in list" :key="item.goodsId">
+        {{item.goodsName}}
+        
+        
+      </li>
+    </ul>
+
+
+
+   
     
 
    
@@ -37,25 +46,21 @@
 
   </div>
 </template> 
-
-
 <script setup lang="ts">
-import {indexInfos} from '@/composables/api/index'
+import type { Good } from "@/components/good/type";
+import { indexInfos } from "@/composables/api/index";
+
+
 
 definePageMeta({
   layout: "default",
 });
-
-let goodList = reactive([])
-indexInfos().then(res=>{
-
-  const {hotGoodses , newGoodses , recommendGoodses} = res.value
-  goodList = hotGoodses.concat(newGoodses, recommendGoodses)
-  
-  
-})
-
-
+const list = ref<Good[]>([])
+indexInfos().then((res) => {
+      const { hotGoodses, newGoodses, recommendGoodses } = res.value;
+      list.value = hotGoodses.concat(newGoodses, recommendGoodses);
+    
+    });
 
 
 
