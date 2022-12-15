@@ -2,12 +2,11 @@
  * @Description:
  * @Author: 司马老贼
  * @Date: 2022-11-22 12:05:35
- * @LastEditTime: 2022-11-29 17:19:24
+ * @LastEditTime: 2022-12-06 21:17:46
  * @LastEditors: 司马老贼
  */
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  
   experimental: {
     externalVue: true,
   },
@@ -54,5 +53,16 @@ export default defineNuxtConfig({
         ],
       },
     ],
+   
   ],
+  nitro: {
+    devProxy: {
+      "/api/v1": {
+        target: "http://backend-api-01.newbee.ltd/api/v1",
+        changeOrigin: true,
+      },
+    },
+  },
+ 
 });
+

@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: 司马老贼
  * @Date: 2022-08-17 12:05:04
- * @LastEditTime: 2022-11-24 21:36:32
+ * @LastEditTime: 2022-12-13 17:52:16
  * @LastEditors: 司马老贼
 -->
 
@@ -34,7 +34,7 @@
 
 const tabbars = reactive([
   {
-    to: '/index',
+    to: '/',
     label: '首页',
     icon: 'wap-home'
   },

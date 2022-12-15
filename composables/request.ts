@@ -2,12 +2,13 @@
  * @Description:
  * @Author: 司马老贼
  * @Date: 2022-11-28 10:11:33
- * @LastEditTime: 2022-12-02 11:27:26
+ * @LastEditTime: 2022-12-15 09:48:01
  * @LastEditors: 司马老贼
  */
 
-import type { Data, Config } from "@/composables/type";
+import type { Data, Config } from "@/type";
 import { Ref } from "nuxt/dist/app/compat/capi";
+import {getToken} from '@/composables/auth'
 
 import { Toast } from "vant";
 
@@ -16,20 +17,19 @@ type Res = Ref<Data>
 //reqest interceptors
 const onRequestHandler = (options: Data, userOption: Config) => {
   
-  const token = undefined;
+  const  token = process.client ? getToken(): '';
+  
   if (token) {
     options.headers = {};
     options.headers.token = token;
   }
  
-  options.baseURL = 'http://backend-api-01.newbee.ltd/api/v1';
  
- 
-  options = {
-    ...options,
-    ...userOption,
-  };
- 
+
+  // options.baseURL = process.env.NUXT_PUBLIC_API_BASE_URL;
+  options.baseURL = 'http://localhost:3000/api/v1'
+  options.method = userOption.method
+  options.body = userOption.body
 };
 //err interceptors
 const onErrorHandler = (err: Error) => {
@@ -41,8 +41,10 @@ const onErrorHandler = (err: Error) => {
 //response interceptors
 
 const onResponseHandler = (res:  Res) =>  {
- 
+  
   const data = ref<Data>({})
+
+  
   if (res.value.resultCode !== 200) {
     
     Toast(res.value.message);
@@ -61,13 +63,16 @@ const request = async (url: string, userOption: Config) => {
     onRequest({request, options }) {
       // Set the request headers
       
+    
+      
+      
       onRequestHandler(options, userOption);
     },
     onRequestError({ request, options, error }) {
       // Handle the request errors
       onErrorHandler(error);
     },
-
+  
     onResponseError({ request, response, options }) {
       // Handle the response errors
       const { error } = response._data;

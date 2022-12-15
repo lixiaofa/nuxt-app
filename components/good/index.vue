@@ -2,13 +2,14 @@
  * @Description: 
  * @Author: 司马老贼
  * @Date: 2022-09-07 16:42:00
- * @LastEditTime: 2022-12-01 16:11:02
+ * @LastEditTime: 2022-12-15 11:27:06
  * @LastEditors: 司马老贼
 -->
 
 <template>
   <div :class="[props.direction ?? 'horizontal']">
-    <van-card :price="props.good.sellingPrice" :desc="props.good.goodsIntro" :title="props.good.goodsName" :thumb="props.good.goodsCoverImg">
+    <NuxtLink :to="`/goods/${props.good.goodsId}`">
+      <van-card :price="props.good.sellingPrice" :desc="props.good.goodsIntro" :title="props.good.goodsName" :thumb="props.good.goodsCoverImg">
       <template #tags>
           <slot name="tags"></slot>
 
@@ -27,6 +28,9 @@
 
      
     </van-card>
+
+    </NuxtLink>
+   
   </div>
 
 </template>
